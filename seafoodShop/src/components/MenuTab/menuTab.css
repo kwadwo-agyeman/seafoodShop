@@ -1,0 +1,9 @@
+.food--menu--tab{
+    background: #20BF55;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 20px;
+}
