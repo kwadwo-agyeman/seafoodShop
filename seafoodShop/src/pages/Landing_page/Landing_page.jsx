@@ -1,11 +1,13 @@
 import React from "react";
-import { Badge, Box, styled } from "@mui/material";
+import { Badge, Box, Typography, styled } from "@mui/material";
 import "./landing_page.css";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MenuTab from "../../components/MenuTab/MenuTab";
 import bannerImage1 from "../../assets/seafoodBanner1.jpg";
+import Swiper_Slide from "../../components/Swiper/Swiper";
+
 const Landing_page = () => {
   const LargeHeader = styled(Box)(({ theme }) => ({
     display: "none",
@@ -133,13 +135,23 @@ const Landing_page = () => {
           <img className="banner--img--1" src={bannerImage1} alt="image1" />
 
           <Box className="banner--text1">
-            <h5 style={{fontSize:'18px',color: "yellow"}}>Fresh Sushi</h5>
-            <h1 style={{fontSize:"23px"}}>White Ceramic Plate Filled With Sushi</h1>
+            <h5 style={{ fontSize: "18px", color: "yellow" }}>Fresh Sushi</h5>
+            <h1 style={{ fontSize: "23px" }}>
+              White Ceramic Plate Filled With Sushi
+            </h1>
             <article className="banner--btn1">
-                <h3>Grab A Bite</h3>
+              <h3>Grab A Bite</h3>
             </article>
           </Box>
         </Box>
+      </Box>
+
+      {/* *********** MIDDLE SLIDER *********** */}
+      <Box className="favorite--meals">
+        <Box className="section--title">
+          <Typography variant="h5" className="section--title--text" sx={{fontWeight:700}}>Featured Items</Typography>
+        </Box>
+        <Swiper_Slide />
       </Box>
     </div>
   );
