@@ -7,6 +7,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MenuTab from "../../components/MenuTab/MenuTab";
 import bannerImage1 from "../../assets/seafoodBanner1.jpg";
 import Swiper_Slide from "../../components/Swiper/Swiper";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 const Landing_page = () => {
   const LargeHeader = styled(Box)(({ theme }) => ({
@@ -24,6 +25,28 @@ const Landing_page = () => {
       display: "none",
     },
   }));
+
+  const SidebarBox = styled(Box)(({ theme }) => ({
+    display: "block",
+    marginTop: "15px",
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
+    },
+  }));
+
+//   --------- Toggle Sidebar appearance
+  const [state, setState] = React.useState(false);
+
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+    setState(open);
+  };
 
   return (
     <div className="landing--page--container">
@@ -76,6 +99,7 @@ const Landing_page = () => {
           </article>
         </article>
       </LargeHeader>
+
       {/* SMALL SCREEN */}
       <SmallHeader>
         <article className="header--top--container">
@@ -83,10 +107,15 @@ const Landing_page = () => {
             <h3>MUSTACHE</h3>
           </article>
 
-          <article className="menu">
+          <article className="menu" onClick={toggleDrawer(true)}>
             <MenuOutlinedIcon className="icon" />
           </article>
         </article>
+
+        {/* ******** SIDEBAR ******** */}
+        <SidebarBox>
+            <Sidebar setState={setState} state={state} toggleDrawer={toggleDrawer} />
+        </SidebarBox>
 
         {/* ********** cart and favorites ********** */}
         <article className="cart--like--container-sm">
@@ -146,13 +175,22 @@ const Landing_page = () => {
         </Box>
       </Box>
 
-      {/* *********** MIDDLE SLIDER *********** */}
+      {/* *********** MIDDLE SLIDER/FEATURED ITEMS *********** */}
       <Box className="favorite--meals">
         <Box className="section--title">
-          <Typography variant="h5" className="section--title--text" sx={{fontWeight:700}}>Featured Items</Typography>
+          <Typography
+            variant="h5"
+            className="section--title--text"
+            sx={{ fontWeight: 700 }}
+          >
+            Featured Items
+          </Typography>
         </Box>
         <Swiper_Slide />
       </Box>
+
+      {/* ************ BOTTOM /TOP PICKS ************** */}
+      <Box></Box>
     </div>
   );
 };

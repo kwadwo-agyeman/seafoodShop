@@ -59,11 +59,11 @@ Ex
 /*navigation button colors */
 .swiper-button-next,
 .swiper-button-prev {
-  color: #20bf55;
+  color: white;
 }
 
 /* change the navigation button hover color */
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  color: #13ce52;
+  color: white;
 }
