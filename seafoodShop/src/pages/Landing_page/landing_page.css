@@ -5,47 +5,6 @@
   padding: 0 10px;
 }
 
-.header--top--container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav--links {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  font-weight: 600;
-}
-
-/* .icon {
-  font-size: 30px;
-} */
-
-.cart--like--container {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.cart--like--container-sm {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-
-.logo {
-  font-weight: 100px;
-  font-size: larger;
-  font-family: "Stanley", sans-serif;
-}
-
-@font-face {
-  font-family: "Stanley";
-  src: url("../../fonts/SparkyStonesRegular-BW6ld.ttf") format("truetype");
-}
-
 .banner--1 {
   position: relative;
   position: 22;
@@ -61,61 +20,171 @@
   height: 100%;
   background: rgb(54, 53, 53, 0.3);
   z-index: 44;
-  
 }
 .banner--img--1 {
   height: 400px;
 }
 
-.banner--text1{
-    color: white;
-    position: absolute;
-    top: 35%;
-    right: 10%;
-    z-index: 55;
-    padding: 20px;
+.banner--text1 {
+  color: white;
+  position: absolute;
+  top: 35%;
+  right: 10%;
+  z-index: 55;
+  padding: 20px;
 }
 
-.banner--btn1{
-    border: 3px solid #20BF55;
-    background-color: #20BF55;
-    border-radius: 8px;
-    width: fit-content;
-    padding: 0 10px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    cursor: pointer;
+.banner--btn1 {
+  border: 3px solid #20bf55;
+  background-color: #20bf55;
+  border-radius: 8px;
+  width: fit-content;
+  padding: 0 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
 }
 
-.banner--btn1:hover{
-    border: 3px solid #20BF55;
-    background-color: white;
-    color: #20BF55;
-
+.banner--btn1:hover {
+  border: 3px solid #20bf55;
+  background-color: white;
+  color: #20bf55;
 }
 
-.favorite--meals{
-    margin-top: 80px;
-    /* height: 40vh; */
-    margin-bottom: 60px;
+.favorite--meals {
+  margin-top: 80px;
+  /* height: 40vh; */
+  margin-bottom: 80px;
 }
 
-.section--title{
-    text-align: center;
-    background-color: #20BF55;
-    width: fit-content;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    padding: 10px;
-    box-shadow: 2px 4px 10px rgb(0, 0, 0,.4);
-    margin-bottom: 20px;
+.section--title {
+  text-align: center;
+  background-color: #20bf55;
+  width: fit-content;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-shadow: 2px 4px 10px rgb(0, 0, 0, 0.4);
+  margin-bottom: 40px;
 }
 
-.section--title--text{
-    /* font-family: "Roboto", sans-serif;
+.section--title--text {
+  /* font-family: "Roboto", sans-serif;
     font-weight: 700; */
-    color: white;
+  color: white;
 }
+
+/* *************   FEATURED ITEMS   **************** */
+.top--picks--btns--container {
+  width: 70vw;
+  margin: 0 auto;
+}
+
+.top--picks--btns {
+  display: flex;
+  align-items: center;
+  /* gap: 80px; */
+  justify-content: space-between;
+  /* background-color: red; */
+  width: 100%;
+}
+
+.top--picks--btns li {
+  font-size: 20px;
+  color: rgb(16, 15, 15);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.top--picks--btns li:hover {
+  color: #20bf55;
+}
+
+.top--picks--btns .top--picks--btn.active{
+  color: #20bf55;
+}
+
+.foodImg--container {
+  height: 250px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.foodImg--container::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
+  background: linear-gradient(245deg,rgb(37, 37, 37,.4),rgb(56, 56, 56,.4)
+  );
+}
+
+.foodImg--container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foodImg--container .content--top{
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  color: rgb(242, 240, 240);
+  z-index: 17;
+  transform: translateY(-100%);
+  /* visibility: hidden; */
+  opacity: 0;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+
+.foodImg--container .content--top h3,span{
+  font-size: larger;
+}
+
+.foodImg--container .content--bottom{
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  /* left: 5%; */
+  z-index: 17;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  /* background-color: red; */
+  transform: translateY(100%);
+  /* visibility: hidden; */
+  opacity: 0;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.foodImg--container:hover .content--bottom{
+  transform: translateY(0%);
+  /* visibility: visible; */
+  opacity: 1;
+
+}
+.foodImg--container:hover .content--top{
+  transform: translateY(0%);
+  opacity: 1;
+}
+.foodImg--container .content--bottom .icon{
+  background-color: rgb(242, 240, 240);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+

@@ -22,7 +22,6 @@ export default function App() {
         nextBtn.click();
       }
     }, 3000);
-
     return ()=> clearInterval(interval)
   }, []);
 

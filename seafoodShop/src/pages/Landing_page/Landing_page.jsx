@@ -1,153 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import { Badge, Box, Typography, styled } from "@mui/material";
 import "./landing_page.css";
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MenuTab from "../../components/MenuTab/MenuTab";
 import bannerImage1 from "../../assets/seafoodBanner1.jpg";
 import Swiper_Slide from "../../components/Swiper/Swiper";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Navbar from "../../components/Navbar/Navbar";
+import { featuredItemsArr as ftFoodArray } from "./landing_page";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+import BBanner from "./BBanner";
 
 const Landing_page = () => {
-  const LargeHeader = styled(Box)(({ theme }) => ({
-    display: "none",
-    marginTop: "20px",
-    [theme.breakpoints.up("sm")]: {
-      display: "flex",
-    },
-  }));
-
-  const SmallHeader = styled(Box)(({ theme }) => ({
-    display: "block",
-    marginTop: "15px",
-    [theme.breakpoints.up("sm")]: {
-      display: "none",
-    },
-  }));
-
-  const SidebarBox = styled(Box)(({ theme }) => ({
-    display: "block",
-    marginTop: "15px",
-    [theme.breakpoints.up("sm")]: {
-      display: "none",
-    },
-  }));
-
-//   --------- Toggle Sidebar appearance
+  const [featuredItemsArr, setFeaturedItemsArr] = useState(ftFoodArray);
+  //   --------- Toggle Sidebar appearance
   const [state, setState] = React.useState(false);
 
   const toggleDrawer = (open) => (event) => {
     if (
       event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
     ) {
       return;
     }
     setState(open);
   };
 
+  //   -------------- filtered featured food Items
+  const filterFtFood = (e) => {
+    const id = e.target.id;
+
+    const btns = document.querySelectorAll(".top--picks--btn");
+    console.log(btns);
+    btns.forEach((btn) => {
+      btn.classList.remove("active");
+    });
+
+    const activeBtn = document.getElementById(id);
+    activeBtn.classList.add('active');
+
+    if (id === "all") {
+      setFeaturedItemsArr(ftFoodArray);
+    } else {
+      const filteredArr = ftFoodArray.filter((item) => item.category === id);
+      setFeaturedItemsArr(filteredArr);
+    }
+  };
   return (
     <div className="landing--page--container">
-      {/* ----------- HEADER ------------- */}
-      {/* --------- TOP ---------- */}
-      {/* LARGE SCREEN */}
-      <LargeHeader className="header--top--container">
-        {/* ********* logo ******** */}
-        <article className="logo">
-          <h3>MUSTACHE</h3>
-        </article>
-
-        {/* *********** nav--links ************ */}
-        <article className="nav--container">
-          <ul className="nav--links">
-            <li>HOME</li>
-            <li>SHOP</li>
-            <li>BLOG</li>
-            <li>CONTACT</li>
-          </ul>
-        </article>
-
-        {/* ********** cart and favorites ********** */}
-        <article className="cart--like--container">
-          <article className="likes">
-            <Badge
-              badgeContent={2}
-              sx={{
-                "& .MuiBadge-badge": {
-                  backgroundColor: "#20BF55",
-                  color: "white",
-                },
-              }}
-            >
-              <FavoriteOutlinedIcon className="icon" />
-            </Badge>
-          </article>
-          <article className="cart">
-            <Badge
-              badgeContent={3}
-              sx={{
-                "& .MuiBadge-badge": {
-                  backgroundColor: "#20BF55",
-                  color: "white",
-                },
-              }}
-            >
-              <ShoppingBagOutlinedIcon className="icon" />
-            </Badge>
-          </article>
-        </article>
-      </LargeHeader>
-
-      {/* SMALL SCREEN */}
-      <SmallHeader>
-        <article className="header--top--container">
-          <article className="logo">
-            <h3>MUSTACHE</h3>
-          </article>
-
-          <article className="menu" onClick={toggleDrawer(true)}>
-            <MenuOutlinedIcon className="icon" />
-          </article>
-        </article>
-
-        {/* ******** SIDEBAR ******** */}
-        <SidebarBox>
-            <Sidebar setState={setState} state={state} toggleDrawer={toggleDrawer} />
-        </SidebarBox>
-
-        {/* ********** cart and favorites ********** */}
-        <article className="cart--like--container-sm">
-          <article className="likes">
-            <Badge
-              badgeContent={1}
-              sx={{
-                "& .MuiBadge-badge": {
-                  backgroundColor: "#20BF55",
-                  color: "white",
-                },
-              }}
-            >
-              <FavoriteOutlinedIcon className="icon" />
-            </Badge>
-          </article>
-          <article className="cart">
-            <Badge
-              badgeContent={0}
-              sx={{
-                "& .MuiBadge-badge": {
-                  backgroundColor: "#20BF55",
-                  color: "white",
-                },
-              }}
-            >
-              <ShoppingBagOutlinedIcon className="icon" />
-            </Badge>
-          </article>
-        </article>
-      </SmallHeader>
-
+      {/* ----------- HEADER/NAVBAR ------------- */}
+      <Box>
+        <Navbar state={state} setState={setState} toggleDrawer={toggleDrawer} />
+      </Box>
       {/* ************* MIDDLE *************** */}
       <Box
         sx={{
@@ -177,6 +81,12 @@ const Landing_page = () => {
 
       {/* *********** MIDDLE SLIDER/FEATURED ITEMS *********** */}
       <Box className="favorite--meals">
+        <Swiper_Slide />
+      </Box>
+
+      {/* ************ BOTTOM /TOP PICKS ************** */}
+      <Box>
+        {/* ******** title ******** */}
         <Box className="section--title">
           <Typography
             variant="h5"
@@ -186,11 +96,70 @@ const Landing_page = () => {
             Featured Items
           </Typography>
         </Box>
-        <Swiper_Slide />
+
+        {/* ********* tabs ********* */}
+        <Box className="top--picks--container">
+          <Box
+            className="top--picks--btns--container"
+            sx={{
+              width: { xs: "80vw", sm: "70vw" },
+              margin: { xs: 0, sm: "0 auto" },
+              mt: "60px",
+            }}
+          >
+            <ul className="top--picks--btns" onClick={filterFtFood}>
+              <li className="top--picks--btn active" id="all">
+                All
+              </li>
+              <li className="top--picks--btn" id="breakfast">
+                Breakfast
+              </li>
+              <li className="top--picks--btn" id="lunch">
+                Lunch
+              </li>
+            </ul>
+          </Box>
+
+          {/* ******* Featured Food Items******** */}
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", sm: "repeat(3,1fr)" },
+              gap: "2rem",
+              mt: "50px",
+            }}
+          >
+            {featuredItemsArr &&
+              featuredItemsArr.map((foodItem, index) => {
+                return (
+                  <Box key={index}>
+                    <div className="foodImg--container">
+                      <img src={foodItem.img} alt={foodItem.name} />
+
+                      <div className="content--top">
+                        <h3>{foodItem.name}</h3>
+                        <span>{`$ ${foodItem.price.toFixed(2)}`}</span>
+                      </div>
+
+                      <div className="content--bottom">
+                        <article className="icon">
+                          <ShoppingBagOutlinedIcon />
+                        </article>
+                        <article className="icon">
+                          <FavoriteOutlinedIcon />
+                        </article>
+                      </div>
+                    </div>
+                  </Box>
+                );
+              })}
+          </Box>
+        </Box>
       </Box>
 
-      {/* ************ BOTTOM /TOP PICKS ************** */}
-      <Box></Box>
+      <Box>
+        <BBanner/>
+      </Box>
     </div>
   );
 };

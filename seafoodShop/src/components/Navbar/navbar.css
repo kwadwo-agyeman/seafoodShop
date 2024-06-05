@@ -1,0 +1,45 @@
+.header--top--container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav--links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: 600;
+}
+
+.nav--links li:hover {
+  color: #20bf55;
+  cursor: pointer;
+}
+
+/* .icon {
+    font-size: 30px;
+  } */
+
+.cart--like--container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.cart--like--container-sm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.logo {
+  font-weight: 100px;
+  font-size: larger;
+  font-family: "Stanley", sans-serif;
+}
+
+@font-face {
+  font-family: "Stanley";
+  src: url("../../fonts/SparkyStonesRegular-BW6ld.ttf") format("truetype");
+}
